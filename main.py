@@ -5,10 +5,8 @@ the competition gate (1-160 UTF-8 chars, one line, not blank).
 """
 import os
 import sys
-ENTRY = (
-    "My fridge lost Wi-Fi and refused to dispense water, which is how "
-    "I learned my kitchen runs on a password I forgot in 2019."
-)
+ENTRY = ("My fridge lost Wi-Fi and refused to dispense water, which is how "
+         "I learned my kitchen runs on a password I forgot in 2019.")
 GATE_MIN = 1
 GATE_MAX = 160
 def gate_problems(text):
@@ -18,10 +16,8 @@ def gate_problems(text):
         problems.append("entry is blank or only whitespace")
     length = len(text)
     if length < GATE_MIN or length > GATE_MAX:
-        problems.append(
-            "entry is %d characters, gate needs %d-%d"
-            % (length, GATE_MIN, GATE_MAX)
-        )
+        problems.append("entry is %d characters, gate needs %d-%d"
+                        % (length, GATE_MIN, GATE_MAX))
     if any(c in text for c in "\r\n"):
         problems.append("entry must be a single line")
     return problems
@@ -47,10 +43,8 @@ def write_entry():
     problems = gate_problems(on_disk)
     if problems:
         return report(problems, " on disk")
-    print(
-        "Wrote entry.txt: %d characters (%d bytes)"
-        % (len(on_disk), len(on_disk.encode("utf-8")))
-    )
+    print("Wrote entry.txt: %d characters (%d bytes)"
+          % (len(on_disk), len(on_disk.encode("utf-8"))))
     return 0
 if __name__ == "__main__":
     sys.exit(write_entry())
